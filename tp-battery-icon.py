@@ -304,9 +304,9 @@ class TrayIcon():
 
         subtitle = ""
         if state == "charging":
-            subtitle += state + " " + self.format_time(ctrl.get_time_charging())
+            subtitle += state.capitalize() + ", " + self.format_time(ctrl.get_time_charging()) + " until full"
         if state == "discharging":
-            subtitle += state + " " + self.format_time(ctrl.get_time_running())
+            subtitle += state.capitalize() + ", " + self.format_time(ctrl.get_time_running()) + " remaining"
 
         if subtitle:
             subheader = Gtk.MenuItem(subtitle)
@@ -402,12 +402,12 @@ class TrayIcon():
         if state == "none":
             title = "Battery " + str(bat) + " not installed"
         else:
-            title = "Battery " + str(bat) + " at " + str(ctrl.get_percentage()) + "% " + state
+            title = "Battery " + str(bat) + " at " + str(ctrl.get_percentage()) + "% \n" + state.capitalize()
 
         if state == "charging":
-            title += " " + self.format_time(ctrl.get_time_charging())
+            title += ", " + self.format_time(ctrl.get_time_charging()) + " until full"
         if state == "discharging":
-            title += " " + self.format_time(ctrl.get_time_running())
+            title += ", " + self.format_time(ctrl.get_time_running()) + " remaining"
 
         icon.icon.set_tooltip_text(title)
 
